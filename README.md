@@ -25,5 +25,10 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
 - 해당 step에선 필터링을 통해 특정 품사만 남겨두고 나머지 토큰은 모두 제거해준다. 이 필터링은 그래프의 복잡도가 과도하게 증가하는 것을 방지하기 위해서 사용된다. 만약 모든 토큰들에 대해서 vertex를 생성하게 되면 그래프가 지나치게 커지기 때문에 그런 현상을 방지하고자 특정 품사나 혹은 특정 단어 집합에 속한 토큰들만 남겨두는 것이다.
 - 본 논문은 필터링에 대해서 다양한 경우의 수로 실험을 진행했는데, 그 중 명사와 형용사 조합이 가장 최선의 결과를 도출했다고 말한다.
 - 이 step까지 마치게 되면 각 토큰들은 다음의 그림과 같이 그래프의 vertex로 구성이 된다. <br>
-- <img width=400 src=https://user-images.githubusercontent.com/48666867/149343642-d97460f1-4025-4446-b6ec-4a3a1cb284c3.png>
-- 
+- <img width=500 src=https://user-images.githubusercontent.com/48666867/149343642-d97460f1-4025-4446-b6ec-4a3a1cb284c3.png>
+
+3. Co-occurrence relation에 따라 Edge 생성
+- 해당 step에선 vertex간 연결 관계를 정의하게 된다. 연결 관계는 동시 등장 여부(Co-occurrence)에 따라 edge가 생성 되게 된다.
+- **Co-occurrence** 는 window size N 이내에 동시 등장하는 두 vertex를 edge로 연결하는데 쓰인다. 본 논문에서는 예시로 N=2로 설정해주었다. 보통 N은 2에서 10까지 사용한다.
+-  입력이 *"Compatibility of systems of linear constraints over the set of natural numbers."* 라고 했을 때, *linear* 를 기준으로 window size 2 이내에 동시 등장하는 단어는 *systems* 와 *constraints* 가 있다. 따라서 이들 vertex끼리 edge를 연결해주면 된다.
+-  <img width=400 src=https://user-images.githubusercontent.com/48666867/149345753-da4427b7-4a0b-4dc3-9ba9-0d7e5af29070.png>
