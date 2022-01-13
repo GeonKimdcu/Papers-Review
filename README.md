@@ -20,3 +20,7 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
  입력이 *"Time is an illusion, Lunchtime double so!"* 라고 했을 때, 구두점을 제외시킨 토큰화 작업의 결과는 다음의 출력과 같다. *"Time", "is', "an", "illusion", "Lunchtime", "double", "so"* . 해당 토큰화는 뛰어쓰기를 기준으로 단순하게 하였으나, 보통 전치사, 관사를 제외시켜 토큰화를 하곤 한다. 그리고 선택적으로 불용어(stopwords) 집합을 미리 정의해둔 경우, 이 불용어 집합에 해당하는 단어들도 제외하게 된다.
  - **Part-of-speech tagging(품사 태깅)** 은 토큰화 과정에서 각 단어가 어떤 품사로 쓰였는지 구분해놓는 작업을 뜻한다. <br>
  입력이 *"Compatibility of systems of linear constraints over the set of natural numbers."* 라고 했을 때, 품사 태깅 작업의 결과는 다음의 출력과 같다. *"compatibility, systems, constraints, numbers"* : NN(noun, 명사), *"linear natural"* : JJ(adjective, 형용사).
+
+2. Syntactic Filtering을 통한 Vertex 생성
+- 해당 step에선 필터링을 통해 특정 품사만 남겨두고 나머지 토큰은 모두 제거해준다. 이 필터링은 그래프의 복잡도가 과도하게 증가하는 것을 방지하기 위해서 사용된다. 만약 모든 토큰들에 대해서 vertex를 생성하게 되면 그래프가 지나치게 커지기 때문에 그런 현상을 방지하고자 특정 품사나 혹은 특정 단어 집합에 속한 토큰들만 남겨두는 것이다.
+- 본 논문은 필터링에 대해서 다양한 경우의 수로 실험을 진행했는데, 그 중 명사와 형용사 조합이 가장 최선의 결과를 도출했다고 말한다.
