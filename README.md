@@ -9,4 +9,4 @@
 
 ### 1. Introduction
 
-**Kleinberg's HITS algorithm (Kleinberg, 1999)**이나 **Google's PageRank (Brin and Page, 1998)**와 같은 그래프 기반의 ranking algorithms은 인용구 분석, 소셜 네트워크, 그리고 World Wide Web의 연결 구조 분석에 성공적으로 사용되어 왔다. 논쟁의 여지 없이, 이러한 알고리즘은
+**Kleinberg's HITS algorithm (Kleinberg, 1999)** 이나 **Google's PageRank (Brin and Page, 1998)** 와 같은 그래프 기반의 ranking algorithms은 인용구 분석, 소셜 네트워크, 그리고 World Wide Web의 연결 구조 분석에 성공적으로 사용되어 왔다. 논쟁의 여지 없이, 이러한 알고리즘은
