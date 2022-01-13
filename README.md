@@ -37,5 +37,10 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
 - 그래프가 Unweighted일 경우 다음 수식과 같다.
 - <img width=400 src=https://user-images.githubusercontent.com/48666867/149350379-f61444d0-2934-4b10-9650-00668771564c.png>
 - 여기서 d는 damping factor로 주로 0에서 1사이이다. 본 논문에서는 0.85값을 사용하였다. 그리고 초기 score는 1 또는 랜덤으로 지정해주었으며, 모든 vertex의 점수가 수렴할 때까지 반복해준다.
-- 수렴 조건: 
-$ s^{k+1}(V_i)-S^k(V_i)<threshold $
+- 수렴 조건: 현재 Iteration의 중요도 점수 - 이전 Iteration의 중요도 점수 차이가 미리 지정한 threshold보다 작을 때, 반복 작업을 중단해준다.
+- 그래프가 Weighted일 경우 다음 수식과 같다.
+- <img width=400 src=https://user-images.githubusercontent.com/48666867/149351381-3fd2ced4-7b1c-4637-8dd4-755a6ff213d8.png>
+- 4가지 그래프 조합에 대한 수렴 곡선을 보면 unweighted와 weighted 그래프와 비교했을 때 최종 수렴 score는 다르더라도 반복 횟수와 수렴 곡선은 거의 동일하다는 것을 알 수 있다.
+- <img width=400 src=https://user-images.githubusercontent.com/48666867/149351782-e854e1ad-0ae4-435a-a59a-f29786680229.png>
+
+
