@@ -53,4 +53,4 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
 문장 추출은 키워드 추출에 비해 절차가 비교적 간단하다. 그 이유는 document를 구성하는 각각의 문장들이 별다른 전처리 과정을 거치지 않고 바로 각 vertex로 지정되기 때문이다. <br>
 문장들이 각 vertex로 지정되면, 문장과 문장 사이의 관계를 정리하여 edge를 생성해줘야 한다. 다만, 키워드 추출에 쓰였던 단어 간의 관계를 파악하는 Co-occurrence 기반의 방법론은 문장과 문장간의 관계를 살피는 large context 문제에 적합하지 않다. <br>
 따라서 문장 추출에서는 특정 문장 2개에서 얼마나 많은 단어가 겹치는지 고려하는(Overlap of sentences) 유사도 점수를 산출하게 된다. 이때 특정 2개 문장 유사도 점수는 다음과 같은 식으로 정의된다. <br>
-$ Similarity(S_i,S_j) = {w_k|w_l \in $
+<img width=500 src=https://user-images.githubusercontent.com/48666867/149355936-da9f153e-d35c-4f3b-843d-a3b70612fa09.png>
