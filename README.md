@@ -43,4 +43,9 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
 - 4가지 그래프 조합에 대한 수렴 곡선을 보면 unweighted와 weighted 그래프와 비교했을 때 최종 수렴 score는 다르더라도 반복 횟수와 수렴 곡선은 거의 동일하다는 것을 알 수 있다.
 - <img width=400 src=https://user-images.githubusercontent.com/48666867/149351782-e854e1ad-0ae4-435a-a59a-f29786680229.png>
 
+5. 최종 score를 바탕으로 Top N 단어 선정
+6. 인접한 단어는 Multi-word Keyword로 결합
+- 인접한 단어는 하나의 멀티 키워드로 결합하게 된다.
+- <img width=500 src=https://user-images.githubusercontent.com/48666867/149352722-116e9e60-8098-44cc-998f-b97b310d168e.png>
+
 
