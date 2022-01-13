@@ -65,7 +65,7 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
 본 논문에서 소개한 TextRank는 비지도 방법론이기 때문에 training/validation 과정은 따로 필요하지 않다. <br>
 먼저 키워드 추출에 대한 평가를 살펴보자.
 
-<img width=400 src=https://user-images.githubusercontent.com/48666867/149357762-7e87da51-a54e-4751-b89e-6b8781483be7.png>
+<img width=600 src=https://user-images.githubusercontent.com/48666867/149357762-7e87da51-a54e-4751-b89e-6b8781483be7.png>
 
 여기서 Total은 전체 키워드 개수이며, Mean은 요약문 당 평균 키워드 개수이다. <br>
 - 가장 높은 Precision과 F-measure 기록(Undirected, Co-occ.window=2)
