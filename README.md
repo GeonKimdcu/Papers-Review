@@ -51,10 +51,38 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
 
 다음으로 문장 추출을 위한 TextRank 방법론에 대해 살펴보겠다. <br>
 문장 추출은 키워드 추출에 비해 절차가 비교적 간단하다. 그 이유는 document를 구성하는 각각의 문장들이 별다른 전처리 과정을 거치지 않고 바로 각 vertex로 지정되기 때문이다. <br>
+1. Similarity Relation을 바탕으로 Vertex와 Edge 생성
 문장들이 각 vertex로 지정되면, 문장과 문장 사이의 관계를 정리하여 edge를 생성해줘야 한다. 다만, 키워드 추출에 쓰였던 단어 간의 관계를 파악하는 Co-occurrence 기반의 방법론은 문장과 문장간의 관계를 살피는 large context 문제에 적합하지 않다. <br>
 따라서 문장 추출에서는 특정 문장 2개에서 얼마나 많은 단어가 겹치는지 고려하는(Overlap of sentences) 유사도 점수를 산출하게 된다. 이때 특정 2개 문장 유사도 점수는 다음과 같은 식으로 정의된다. <br>
 <img width=500 src=https://user-images.githubusercontent.com/48666867/149355936-da9f153e-d35c-4f3b-843d-a3b70612fa09.png>
 
 여기서 normalization factor는 위 식의 분모이며, 긴 문장의 유사도만 지나치게 증가하지 않도록 제한하는 역할을 한다. 그리고 오버랩 되는 정도는 분자를 통해 파악할 수 있다. <br>
 위 식의 Similarity는 Document의 문장 수를 토대로 대칭의 특징을 가지는 유사도 행렬이 된다. 그리고 min_sim(최소 기준)을 넘는 문장 vertex 사이 edge를 생성해준다. 
+2. Weighted Importance Score 반복적으로 산출
+3. 최종 Score를 바탕으로 Top N 문장 선정하여 요약문 생성
 
+
+본 논문에서 소개한 TextRank는 비지도 방법론이기 때문에 training/validation 과정은 따로 필요하지 않다. <br>
+먼저 키워드 추출에 대한 평가를 살펴보자.
+
+<img width=400 src=https://user-images.githubusercontent.com/48666867/149357762-7e87da51-a54e-4751-b89e-6b8781483be7.png>
+
+여기서 Total은 전체 키워드 개수이며, Mean은 요약문 당 평균 키워드 개수이다. <br>
+- 가장 높은 Precision과 F-measure 기록(Undirected, Co-occ.window=2)
+- Window size를 키울수록 성능 하락(멀리 위치한 단어일수록 연결성이 줄어들기 때문)
+- 여러 syntactic filtering 기법(open class words, nouns only)을 활용했으나 best는 명사&형용사 조합
+- directed graph일 때 성능 하락
+
+다음은 문장 추출에 대한 평가를 살펴보자.
+
+<img width=400 src=https://user-images.githubusercontent.com/48666867/149358879-e1699181-fce4-471e-ab20-3684c3bac1f0.png>
+
+-stemmed(어간 추출), no-stopwords(불용어 제거x) 버전에서 textrank 요약문이 2위를 기록.
+
+마지막으로 TextRank에 대해 정리하자면, 
+- 다른 지도학습 기반 방법들과 다르게 모델 train 과정이 따로 존재하지 않고, 오직 주어진 text 정보에만 의존.
+ - 타 언어나 도메인에도 바로 적용 가능
+- 연결된 다른 text unit의 중요도를 바탕으로 해당하는 text unit의 중요도를 판단하고 이를 반복
+ - local context 뿐만 아니라 entire text(graph)에서 재귀적으로 정보를 추출 가능
+- 모든 단어와 문장의 중요도 점수 산출
+ - 요약문의 길이, 주요 키워드의 개수 자유롭게 조정 가능
