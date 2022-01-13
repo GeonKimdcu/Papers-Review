@@ -32,3 +32,9 @@ TextRank의 작동원리로 텍스트를 그래프로 표현하기 위해 본 �
 - **Co-occurrence** 는 window size N 이내에 동시 등장하는 두 vertex를 edge로 연결하는데 쓰인다. 본 논문에서는 예시로 N=2로 설정해주었다. 보통 N은 2에서 10까지 사용한다.
 -  입력이 *"Compatibility of systems of linear constraints over the set of natural numbers."* 라고 했을 때, *linear* 를 기준으로 window size 2 이내에 동시 등장하는 단어는 *systems* 와 *constraints* 가 있다. 따라서 이들 vertex끼리 edge를 연결해주면 된다.
 -  <img width=400 src=https://user-images.githubusercontent.com/48666867/149345753-da4427b7-4a0b-4dc3-9ba9-0d7e5af29070.png>
+
+4. Importance Score 반복적으로 산출 (Iteration)
+- 그래프가 Unweighted일 경우 다음 수식과 같다.
+- <img width=400 src=https://user-images.githubusercontent.com/48666867/149350379-f61444d0-2934-4b10-9650-00668771564c.png>
+- 여기서 $d$는 damping factor로 주로 0에서 1사이이다. 본 논문에서는 0.85값을 사용하였다. 그리고 초기 score는 1 또는 랜덤으로 지정해주었으며, 모든 vertex의 점수가 수렴할 때까지 반복해준다.
+- 수렴 조건: $s^{k+1}(V_i)-S^k(V_i)<threshold$
